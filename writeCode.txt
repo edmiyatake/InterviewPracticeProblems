@@ -1,0 +1,80 @@
+public class Node {
+    private int value;
+    private Node next;
+}
+
+public class LinkedList {
+    private Node first;
+    private Node last;
+
+    public LinkedList() {
+        first = null;
+        last = null;
+    }
+
+    public void addFirst(int value) {
+        // if the list is empty, then add newNode to the beginning
+        Node newNode = new Node(value);
+        if (first == null) {
+            first = newNode;
+            last = newNode;
+        }
+        else {
+            // need to swap current first node with newNode
+            Node secondNode = first;
+            first = newNode;
+            newNode.next = secondNode;
+        }
+    }
+
+    public void addLast(int value) {
+        Node newNode = new Node(value);
+        // check if list is empty
+        if (first == null) {
+            first = newNode;
+            last = newNode;
+        }
+        else {
+            Node curr = first;
+            while (curr.next != null) {
+                curr = curr.next;
+            }
+            // now curr is at last item
+            curr.next = newNode;
+        }
+    }
+
+    public void removeFirst() {
+        if (first == null) {
+            System.out.println("No element to remove");
+        }
+        else {
+            first = first.next;
+        }
+    }
+
+    public void removeLast() {
+        // find the element before last
+        if (first == null) {
+                    System.out.println("No element to remove");
+                }
+                else {
+                    Node curr = first;
+                    while (curr.next != null) {
+                        curr = curr.next;
+                    }
+                    // curr should be at the second to last item
+                    last = curr;
+                }
+    }
+
+    public void print() {
+        Node curr = first;
+        while (curr.next != null) {
+            System.out.println(curr.value);
+            curr = curr.next;
+        }
+    }
+
+
+}
